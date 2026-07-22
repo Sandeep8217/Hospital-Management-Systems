@@ -30,7 +30,8 @@ app.use(express.static(path.join(__dirname, 'view')));
 app.set('view engine', 'ejs');
 
 // app.js or server.js
-app.use('/images', express.static('images'));
+// app.use('/images', express.static('images'));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 // Serve static files from the 'uploads' directory
@@ -48,7 +49,7 @@ app.use('/user', paymentRoutes);
 
 
 // app.js or server.js
-app.use('/images', express.static('path/to/your/images/directory'));
+// app.use('/images', express.static('path/to/your/images/directory'));
 
 
 
