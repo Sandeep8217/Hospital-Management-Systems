@@ -8,11 +8,18 @@ const User = require('../models/User'); // Adjust the path if needed
 
 
 // User Dashboard
-router.get('/Dashboard',  (req, res) => {
-    res.render('user/Dashboard');
+// router.get('/dashboard',  (req, res) => {
+//     res.render('user/dashboard');
+// });
+router.get('/dashboard', (req, res) => {
+    if (!req.session.userId) {
+        return res.redirect('/login');
+    }
+
+    res.render('user/dashboard');
 });
 router.get('/', (req, res) => {
-  res.render('user/Dashboard');  // Same dashboard view
+  res.render('user/dashboard');  // Same dashboard view
 });
 
 
@@ -31,7 +38,7 @@ router.get('/doctors',  async (req, res) => {
 router.get('/appointments/new',  async (req, res) => {
     try {
         const doctors = await Doctor.find();
-        res.render('User/bookAppointment', { doctors });
+        res.render('user/bookAppointment', { doctors });
     } catch (error) {
         console.error('Error fetching doctors:', error);
         res.status(500).send('Server Error');
