@@ -8,18 +8,18 @@ const User = require('../models/User'); // Adjust the path if needed
 
 
 // User Dashboard
-// router.get('/dashboard',  (req, res) => {
-//     res.render('user/dashboard');
-// });
-router.get('/dashboard', (req, res) => {
-    if (!req.session.userId) {
-        return res.redirect('/login');
-    }
-
-    res.render('user/dashboard');
+router.get('/dashboard',  (req, res) => {
+    res.render('user/Dashboard');
 });
+// router.get('/dashboard', (req, res) => {
+//     if (!req.session.userId) {
+//         return res.redirect('/login');
+//     }
+
+//     res.render('user/Dashboard');
+// });
 router.get('/', (req, res) => {
-  res.render('user/dashboard');  // Same dashboard view
+  res.render('user/Dashboard');  // Same dashboard view
 });
 
 
@@ -119,7 +119,7 @@ router.get('/ViewMessages', async (req, res) => {
 
 
 // Send a Message - Form
-router.get('/Messages/new', async (req, res) => {
+router.get('/messages/new', async (req, res) => {
     try {
         // Fetch recipients (e.g., admins or doctors)
         const recipients = await User.find({ isAdmin: true }).exec(); // Assuming admins and doctors are stored in the User model
@@ -148,6 +148,7 @@ router.post('/messages', async (req, res) => {
             recipient: recipientId,
             subject,
             body,  // or body: body depending on your schema
+
             dateSent: new Date()
         });
 

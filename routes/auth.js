@@ -127,9 +127,9 @@ router.get('/login',(req,res,next) => {
 //     res.render('login');
 // });
 // Dashboard
-router.get('/Dashboard', (req, res) => {
+router.get('/dashboard', (req, res) => {
     if (req.session.user) {
-        res.render('user/Dashboard'); // Render dashboard view
+        res.render('/user/dashboard'); // Render dashboard view
     } else {
         res.redirect('/login'); // Redirect to login if not authenticated
     }
@@ -143,7 +143,7 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ email: email });
         if (user && user.password === password) { // Passwords are not hashed
             req.session.userId = user._id; // Save user in session
-            res.redirect('user/Dashboard'); // Redirect to dashboard after login
+            res.redirect('user/dashboard'); // Redirect to dashboard after login
         } else {
             res.send('Invalid email or password'); // Handle invalid login
         }
