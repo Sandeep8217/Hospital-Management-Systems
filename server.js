@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -21,7 +22,7 @@ app.use(express.json());
 
 // Session setup
 app.use(session({
-    secret: 'yourSecretKey',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
 }));
@@ -52,13 +53,20 @@ app.use('/images', express.static('path/to/your/images/directory'));
 
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/hospital-management', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log('Connected to MongoDB.');
-}).catch(err => {
-    console.error('MongoDB connection error:', err);
+// mongoose.connect('mongodb://localhost:27017/hospital-management', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// }).then(() => {
+//     console.log('Connected to MongoDB.');
+// }).catch(err => {
+//     console.error('MongoDB connection error:', err);
+// });
+mongoose.connect(process.env.MONGODB_URI)
+.then(() => {
+    console.log("Connected to MongoDB Atlas");
+})
+.catch(err => {
+    console.error(err);
 });
 
 app.get('/',(req,res) => {
