@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Doctors</h2>
+        <div class="mt-4">
+            <ul class="list-group">
+                <% doctors.forEach(doctor => { %>
+                    <li class="list-group-item">
+                        <strong>Name:</strong> <%= doctor.name %> <br>
+                        <strong>Specialization:</strong> <%= doctor.specialization %>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <div class="text-center mt-3">
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+        <a href="/dashboard" class="btn btn-primary mt-3">Back to User Dashboard</a>
+    </div>
+</body>
+</html>

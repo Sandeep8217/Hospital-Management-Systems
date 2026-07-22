@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">My Appointments</h2>
+        <div class="mt-4">
+            <form action="/appointments/new" method="POST"><!-- change capital A to small a to work code correctly -->
+            <ul class="list-group">
+                <% appointments.forEach(appointment => { %>
+                    <li class="list-group-item">
+                        <strong>Date:</strong> <%= appointment.date %> <br>
+                        <strong>Doctor:</strong> <%= appointment.doctor %> <br>
+                        <strong>Status:</strong> <%= appointment.status %>
+                    </li>
+                <% }); %>
+            </ul>
+            </form>
+        </div>
+        <div class="text-center mt-3">
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+        <a href="/dashboard" class="btn btn-primary mt-3">Back to User Dashboard</a>
+    </div>
+</body>
+</html>

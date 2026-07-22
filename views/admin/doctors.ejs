@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Doctors</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2); /* Light gradient */
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        .doctor-card {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .doctor-photo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .doctor-card h3 {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .doctor-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .doctors-list {
+            margin-top: 30px;
+        }
+
+        .btn-secondary {
+            background-color: #007bff;
+            border: none;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="text-center my-4">Doctors List</h2>
+
+        <div class="row">
+            <% doctors.forEach(function(doctor) { %>
+                <div class="col-md-3 mb-4">
+                    <div class="doctor-card">
+                        <img src="<%= doctor.photo %>" alt="Doctor Photo" class="doctor-photo" />
+                        <h3><%= doctor.fullName %></h3>
+                        <p><b>Speciality:</b> <%= doctor.speciality %></p>
+                        <p><b>Contact:</b> <%= doctor.contact %></p>
+                        <p><b>Email:</b> <%= doctor.email %></p>
+                        <p><b>Achievements:</b> <%= doctor.Achievements %></p>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/admin/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>
